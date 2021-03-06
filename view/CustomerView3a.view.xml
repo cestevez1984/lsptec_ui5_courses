@@ -1,0 +1,48 @@
+<mvc:View xmlns="sap.m" xmlns:ly="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core">
+    <Page title="Pagina principal">
+        <content>
+
+                <Panel width="auto" expandable="true">
+                    <headerToolbar>
+                        <OverflowToolbar>
+                            <Title text="Fotos del cliente"></Title>
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <content>
+                        <ly:VerticalLayout>
+                            <Image src="images/customer_1.png" width="5cm"></Image>
+                        </ly:VerticalLayout>
+                    </content>
+                </Panel>
+                <Panel expandable="true">
+                    <headerToolbar>
+                        <OverflowToolbar>
+                            <Title text="Informacion Personal Cliente"></Title>
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <content>
+                        <ly:VerticalLayout>
+                            <Label text="Tipo Cliente"></Label>
+                            <ComboBox>
+                                <core:Item text="Normal"></core:Item>
+                                <core:Item text="Gobierno"></core:Item>
+                            </ComboBox>
+                            <Label text="Nombre"></Label>
+                            <Input></Input>
+                            <Label text="Apellido"></Label>
+                            <Input></Input>
+                            <Label text="Direccion"></Label>
+                            <Input></Input>
+                            <RadioButtonGroup columns="2">
+                                <RadioButton text="Male" selected="true"></RadioButton>
+                                <RadioButton text="Female"></RadioButton>
+                            </RadioButtonGroup>
+                            <Label text="Fecha Nacimiento"></Label>
+                            <DatePicker valueFormat="dd-mm-yyyy"></DatePicker>
+                        </ly:VerticalLayout>
+                    </content>
+                </Panel>
+
+        </content>
+    </Page>
+</mvc:View>

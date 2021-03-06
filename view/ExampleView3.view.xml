@@ -1,0 +1,21 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:ly="sap.ui.layout">
+    <Page title="Pagina principal">
+        <content>
+            <Panel>
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="Prueba con Mensajes de Dialogo"></Title>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <content>
+                    <ly:VerticalLayout>
+                        <Button text="Confirmar" press="confirm" width="3cm"></Button>
+                        <Button text="Informar" press="inform" width="3cm"></Button>
+                        <Button text="Advertencia" press="Advertir" width="3cm"></Button>
+                        <Button text="Satisfactorio" press="Success" width="3cm"></Button>
+                    </ly:VerticalLayout>
+                </content>
+            </Panel>
+        </content>
+    </Page>
+</mvc:View>

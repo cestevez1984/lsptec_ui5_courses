@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<head><title>Example 3</title>
+    <script src="http://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+            data-sap-ui-libs="sap.m,sap.ui.layout"
+            data-sap-ui-theme="sap_bluecrystal"
+            data-sap-ui-resourceroots='{"root":"./"}'>
+    </script>
+    <script>
+        let oApp;
+        let oPage;
+        let oTxtName;
+        let oTxtLastName;
+        let oTxtAddress;
+        let oCmbCustType;
+        let oTlbMainPage;
+        let oLblName;
+        let oLblLastName;
+        let oLblAddress;
+        let oLblCustType;
+
+
+        function loadData(){
+            let oMdlCstType = new sap.ui.model.json.JSONModel();
+            oMdlCstType.loadData("model/data.json");
+            sap.ui.getCore().setModel(oMdlCstType);
+
+        }
+
+        function initControls(){
+            oLblName = new sap.m.Label({
+                text:"Name"
+            });
+            oLblLastName = new sap.m.Label({
+                text:"Last Name"
+            });
+            oLblAddress = new sap.m.Label({
+                text:"Address"
+            });
+            oLblCustType = new sap.m.Label({
+                text:"Customer Type"
+            });
+            oTxtName = new sap.m.Input();
+            oTxtLastName = new sap.m.Input();
+            oTxtAddress = new sap.m.Input();
+
+            let oBtnClearForm = new sap.m.Button({
+                text:"Clear",
+                icon:"sap-icon://clear-all"
+            });
+            let oBtnBringData = new sap.m.Button({
+                text:"Bring Data",
+                icon:"sap-icon://cause"
+            });
+
+            oTlbMainPage = new sap.m.Toolbar({
+                content:[oBtnBringData,oBtnClearForm]
+            });
+
+            oCmbCustType = new sap.m.ComboBox({
+                showSecondaryValues:true
+            });
+            let oTmpItem = new sap.ui.core.ListItem({
+               text:"{code}",
+                additionalText:"{description}"
+            });
+            oCmbCustType.bindItems("/customerTypes",oTmpItem);
+
+        }
+
+        sap.ui.getCore().attachInit(function (){
+            loadData();
+            initControls();
+
+
+            var oVrtLayout = new sap.ui.layout.VerticalLayout({
+               content:[oLblName,oTxtName,oLblLastName,oTxtLastName,oLblAddress,oTxtAddress,oCmbCustType]
+            });
+
+            oPage = new sap.m.Page("page",{
+               title:"Pagina Principal",
+                content:[oTlbMainPage,oVrtLayout]
+            });
+
+            oApp = new sap.m.App('app',{
+                initialPage:oPage
+            });
+            oApp.addPage(oPage);
+            oApp.placeAt("content");
+        });
+    </script>
+</head>
+<body class="sapUiBody sapUiResponsiveMargin">
+    <div id="content"></div>
+</body>

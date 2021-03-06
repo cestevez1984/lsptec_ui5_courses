@@ -1,0 +1,5 @@
+{
+  "customers":[
+    {"id": "1","name": "Carlos","lastName": "Estevez","email": "carlos@gmail.com","address": "Las Lomas"}
+  ]
+}

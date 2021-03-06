@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<head><title>Example 3</title>
+    <script src="http://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+            data-sap-ui-libs="sap.m,sap.ui.layout"
+            data-sap-ui-theme="sap_bluecrystal"
+            data-sap-ui-resourceroots='{"root":"./"}'>
+    </script>
+    <script>
+        let oApp;
+        let oPage;
+        let oTxtName;
+        let oTxtLastName;
+        let oTxtAddress;
+        let oCmbCustType;
+        let oTlbMainPage;
+        let oLblName;
+        let oLblLastName;
+        let oLblAddress;
+        let oLblCustType;
+        let oRdMale;
+        let oRdFemale;
+        let oRdgGender;
+        let oImgCust;
+        let oDtpBirthDate;
+        let oLblBirthDate;
+
+
+        function initControls(){
+
+            oLblBirthDate = new sap.m.Label({
+               text:"Fecha nacimiento"
+            });
+            oDtpBirthDate = new sap.m.DatePicker({
+                valueFormat:"yyyy-MM-dd"
+            });
+            oImgCust = new sap.m.Image({
+                src:"../images/customer_1.png",
+                alt:"Imagen cliente",
+                width:"4cm"
+            });
+
+            oLblName = new sap.m.Label({
+                text:"Name"
+            });
+            oLblLastName = new sap.m.Label({
+                text:"Last Name"
+            });
+            oLblAddress = new sap.m.Label({
+                text:"Address"
+            });
+            oLblCustType = new sap.m.Label({
+                text:"Customer Type"
+            });
+            oTxtName = new sap.m.Input();
+            oTxtLastName = new sap.m.Input();
+            oTxtAddress = new sap.m.Input();
+
+            let oBtnClearForm = new sap.m.Button({
+                text:"Clear",
+                icon:"sap-icon://clear-all"
+            });
+            let oBtnBringData = new sap.m.Button({
+                text:"Bring Data",
+                icon:"sap-icon://cause"
+            });
+
+            oTlbMainPage = new sap.m.Toolbar({
+                content:[oBtnBringData,oBtnClearForm]
+            });
+
+            oCmbCustType = new sap.m.ComboBox({
+                showSecondaryValues:true,
+                items:[
+                    new sap.ui.core.ListItem({text:"Normal",key:"C1",additionalText:"C1"}),
+                    new sap.ui.core.ListItem({text:"Gobierno",key:"C1"})
+                    ]
+            });
+
+            oRdMale = new sap.m.RadioButton({
+               text:"Hombre"
+            });
+            oRdFemale = new sap.m.RadioButton({
+                text:"Mujer"
+            });
+            oRdgGender = new sap.m.RadioButtonGroup({
+               columns:2
+            });
+            oRdgGender.addButton(oRdMale);
+            oRdgGender.addButton(oRdFemale);
+            oRdFemale.setSelected(true);
+
+
+        }
+
+        sap.ui.getCore().attachInit(function (){
+
+            initControls();
+
+
+            var oVrtLayout = new sap.ui.layout.VerticalLayout({
+               content:[oImgCust,oCmbCustType,oLblName,oTxtName,oLblLastName,oTxtLastName,
+                   oLblAddress,oTxtAddress,oRdgGender,oLblBirthDate,oDtpBirthDate]
+            });
+
+            oPage = new sap.m.Page("page",{
+               title:"Pagina Principal",
+                content:[oTlbMainPage,oVrtLayout]
+            });
+
+            oApp = new sap.m.App('app',{
+                initialPage:oPage
+            });
+            oApp.addPage(oPage);
+            oApp.placeAt("content");
+        });
+    </script>
+</head>
+<body class="sapUiBody sapUiResponsiveMargin">
+    <div id="content"></div>
+</body>

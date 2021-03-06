@@ -1,0 +1,159 @@
+<html>
+<head><title>example3e</title>
+    <script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.m,sap.ui.layout"
+            data-sap-ui-theme="sap_bluecrystal"></script>
+    <script>
+        let oApp;
+        let oPage;
+        let oCmbListCountries;
+        sap.ui.getCore().attachInit(function () {
+
+            var oLayout1 = new sap.ui.layout.form.ResponsiveGridLayout({
+                labelSpanXL:2,//El espacio de columnas de izquierda a derecha
+                labelSpanL:4,
+                labelSpanM:12,
+                labelSpanS:12,
+                emptySpanXL:2,//El espacio de columnas de derecha a izquierda
+                emptySpanL:0,
+                emptySpanM:0,
+                emptySpanS:0,
+                columnsXL:2,
+                columnsL:2,
+                columnsM:2
+                // singleContainerFullSize:false
+            });
+
+            initComboBox();
+
+            let oImpName = new sap.m.Input({
+                type: sap.m.InputType.Text,
+                value: " "
+
+            });
+            let oImpEmail = new sap.m.Input({
+                type: sap.m.InputType.Text,
+                value: " "
+            });
+            let oImpCountry = new sap.m.Input({
+                type: sap.m.InputType.Text,
+                value: " "
+
+            });
+            let oImpCity = new sap.m.Input({
+                type: sap.m.InputType.Text,
+                value: " "
+
+            });
+
+            let oImpStreet= new sap.m.Input({
+                type: sap.m.InputType.Text,
+                value: " "
+
+            });
+
+            let oRgGender = new sap.m.RadioButtonGroup({
+                columns:2
+            });
+            let oRdFemale = new sap.m.RadioButton({
+                text:"Mujer"
+            });
+            let oRdMale = new sap.m.RadioButton({
+                text:"Hombres",
+                selected:true
+            });
+            oRgGender.addButton(oRdMale);
+            oRgGender.addButton(oRdFemale);
+
+
+
+            let oFreName = new sap.ui.layout.form.FormElement({
+                label: "Nombre",
+                fields: [oImpName]
+            });
+            let oFreEmail = new sap.ui.layout.form.FormElement({
+               label:"Email",
+               fields:[oImpEmail]
+            });
+            let oFreCountry = new sap.ui.layout.form.FormElement({
+                label:"Direccion",
+                fields:[oImpStreet,oImpCity,oCmbListCountries]
+            });
+            let oFreGender = new sap.ui.layout.form.FormElement({
+                label:"Genero",
+                fields:[oRgGender]
+            });
+
+
+            let oFrCust = new sap.ui.layout.form.FormContainer("F1C2", {
+                title: new sap.ui.core.Title({
+                    text: "Informacion del cliente",
+                    tooltip: "Informacion del cliente"}),
+                    formElements: [oFreName,oFreEmail,oFreCountry,oFreGender]
+                });
+
+            var customerDetailsForm = new sap.ui.layout.form.Form("F1", {
+                layout: oLayout1,
+                formContainers: [oFrCust]
+                });
+
+
+
+
+            oApp = new sap.m.App("oApp");
+            oPage = new sap.m.Page("oMainPage",{
+                title:"Pagina principal",
+                content:[customerDetailsForm]
+            });
+            oApp.addPage(oPage);
+            oApp.placeAt("content");
+        });
+
+        function initComboBox(){
+            //getCountriesFromService();
+            getCountriesFromFile();
+            oCmbListCountries = new sap.m.ComboBox({
+                showSecondaryValues:true
+            });
+
+            let oLstTemp = new sap.ui.core.ListItem({
+                text:"{country}",
+                key:"{country}",
+                additionalText:"{region}"
+            });
+            oCmbListCountries.bindItems("/data",oLstTemp);
+        }
+
+
+        function getCountriesFromFile(){
+            let oMdlCountries = new sap.ui.model.json.JSONModel();
+            oMdlCountries.loadData("../model/countries.json");
+            sap.ui.getCore().setModel(oMdlCountries);
+
+        }
+
+        function getCountriesFromService(){
+
+
+            let aData = jQuery.ajax({
+                type: "GET",
+                contentType: "application/json",
+                url: "https://api.first.org/data/v1/countries",
+                dataType: "json",
+                async: false,
+                success: function(data, textStatus, jqXHR) {
+                    let oModel = new sap.ui.model.json.JSONModel();
+                    oModel.setData(data);
+                    sap.ui.getCore().setModel(oModel);
+                }
+
+            });
+
+        }
+    </script>
+</head>
+<body class="sapUiBody">
+<div id="content"></div>
+</body>
+</html>

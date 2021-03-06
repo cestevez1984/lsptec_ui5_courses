@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<head>
+    <script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.m,sap.ui.layout"
+            data-sap-ui-theme="sap_bluecrystal"
+            data-sap-ui-resourceroots='{"root":"./"}'></script>
+
+    <script>
+        let oApp;
+        let oMainPage;
+        let lColsCusTable;
+        let oTmpCusTable;
+        let oTooCus;
+        let oTblCus;
+
+        sap.ui.getCore().attachInit(function(){
+            createTable();
+
+            oApp = new sap.m.App("oApp");
+            oMainPage = new sap.m.Page("oMainPage",{
+                title:"Pagina principal",
+                content:[oTblCus]
+            });
+            oApp.addPage(oMainPage);
+            oApp.placeAt("content");
+        });
+
+        function initData(){
+            let oMdlCus = new sap.ui.model.json.JSONModel();
+            oMdlCus.loadData("../model/data_customer.json");
+            sap.ui.getCore().setModel(oMdlCus);
+        }
+
+        function createTable(){
+            initData();
+            createColumns();
+            createTemplate();
+            createToolbar();
+
+            oTblCus = new sap.m.Table({
+                columns:lColsCusTable,
+                headerToolbar:oTooCus
+            });
+            oTblCus.bindItems("/customers",oTmpCusTable);
+
+
+        }
+
+        function createToolbar(){
+            let oTooCus = new sap.m.Toolbar({
+                content:[
+                    new sap.m.Title({text:"Lista de clientes"})
+                ]
+            });
+        }
+
+        function createTemplate(){
+            oTmpCusTable = new sap.m.ColumnListItem({
+                type:"Navigation",
+                cells:[
+                    new sap.m.ObjectIdentifier({text:"{id}"}),
+                    new sap.m.ObjectIdentifier({text:"{name}"}),
+                    new sap.m.ObjectIdentifier({text:"{email}"}),
+                    new sap.m.ObjectIdentifier({text:"{country}"})
+                ]
+            });
+        }
+        function createColumns(){
+            lColsCusTable=[
+                new sap.m.Column({
+                    header:new sap.m.Text("Id")
+                }),
+                new sap.m.Column({
+                    header: new sap.m.Text("Nombre")
+                }),
+                new sap.m.Column({
+                    header:new sap.m.Text("Email")
+                }),
+                new sap.m.Column({
+                    header:new sap.m.Text("Pais")
+                })
+            ];
+        }
+
+
+
+    </script>
+</head>
+<body>
+<div id="content"></div>
+</body>
+</html>

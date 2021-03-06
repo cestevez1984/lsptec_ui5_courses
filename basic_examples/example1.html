@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head><title>Example 1</title>
+    <script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.m"
+            data-sap-ui-theme="sap_bluecrystal"
+            data-sap-ui-resourceroots='{"example1":"/"}'>
+    </script>
+    <script>
+        sap.ui.getCore().attachInit(function(){
+                let oBtnTest = new sap.m.Button({
+                    text:"Test",
+                    press:showHelloWorld
+                });
+                oBtnTest.placeAt("content");
+        });
+        function showHelloWorld(){
+                alert("Hello World!");
+        }
+        function showHelloWorld2(){
+            alert("Hello world 2");
+        }
+    </script>
+</head>
+<body class="sapUiBody">
+    <div id="content"></div>
+</body>
+</html>

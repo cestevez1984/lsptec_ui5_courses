@@ -1,0 +1,8 @@
+{
+  "customers": [
+    {"id": "A-1","name": "Nikola Tesla","email":"tesla@gmail.com","country":"Serbia","gender":"M"},
+    {"id": "A-2","name": "Michael Faraday", "email":"faraday@gmail.com","country": "Inglaterra","gender": "M"},
+    {"id": "A-3","name": "Isaac Newton", "email":"newton@gmail.com","country": "Inglaterra","gender": "M"},
+    {"id": "A-4","name": "Albert Einstein", "email":"einstein@gmail.com","country": "Alemania","gender": "M"}
+  ]
+}

@@ -1,0 +1,39 @@
+<!--Created on:2/21/2021 and created by:carlos-->
+<html>
+<head><title>example2</title>
+    <script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.m,sap.ui.layout"
+            data-sap-ui-theme="sap_bluecrystal"></script>
+    <script>
+        let oApp;
+        let oMainPage;
+        let oBtnShowMsg;
+        let oLblMessage;
+
+        sap.ui.getCore().attachInit(function () {
+
+            oBtnShowMsg = new sap.m.Button("oBtnShowMsg",{
+                text:"Mostrar Mensaje",
+                press:showMessage
+            });
+            oLblMessage = new sap.m.Label("oLblMessage");
+            oMainPage = new sap.m.Page("mainPage",{
+                title:"Pagina Principal"
+            });
+            oMainPage.addContent(oBtnShowMsg);
+            oMainPage.addContent(oLblMessage);
+
+            oApp = new sap.m.App("app");
+            oApp.addPage(oMainPage);
+            oApp.placeAt("content");
+        });
+        function showMessage(){
+            oLblMessage.setText("Hola Mundo");
+        }
+    </script>
+</head>
+<body class="sapUiBody">
+<div id="content"></div>
+</body>
+</html>

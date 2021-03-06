@@ -1,0 +1,229 @@
+<!--Created on:2/25/2021 and created by:carlos-->
+<html>
+<head><title>example4</title>
+    <script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.m,sap.ui.layout"
+            data-sap-ui-theme="sap_bluecrystal"></script>
+    <script>
+        let oPgLstCus;
+        let oPgCrCus;
+        let oApp;
+        let oTblLstCus;
+        let oTmpLstCus;
+        let oBtnCreateCus;
+        let oBtnRefreshCus;
+        let oTooPgLstCus;
+        let oInpName;
+        let oInpLastName;
+        let oInpEmail;
+        let oInpAddress;
+        let oBtnSaveCus;
+
+
+        sap.ui.getCore().attachInit(function () {
+            jQuery.sap.require("sap.m.MessageBox");
+            fetchData();
+            createPageList();
+            createPageCreate();
+
+
+            oApp = new sap.m.App("oApp");
+            oApp.addPage(oPgLstCus);
+            oApp.addPage(oPgCrCus);
+
+            oApp.placeAt("content");
+        });
+
+        function fetchData(){
+            //var oJsmCust = new sap.ui.model.json.JSONModel();
+            // oJsmCust.loadData("model/data_customer_2.json");
+            // sap.ui.getCore().setModel(oJsmCust);
+            jQuery.ajax({
+                type: "GET",
+                contentType: "application/json",
+                url: "http://localhost:8080/ExampleServicesUI5/rest/customer",
+                dataType: "json",
+                async: false,
+                success: function(data, textStatus, jqXHR) {
+                    let oModel = new sap.ui.model.json.JSONModel();
+                    oModel.setData(data);
+                    sap.ui.getCore().setModel(oModel);
+                }
+            });
+
+        }
+        function createPageList(){
+            oBtnCreateCus = new sap.m.Button({
+                text:"Crear",
+                icon:"sap-icon://add-employee",
+                press:createCustomer
+            }) ;
+            oBtnRefreshCus = new sap.m.Button({
+                text:"Refrescar",
+                icon:"sap-icon://refresh",
+                press:refreshListCustomer
+            }) ;
+
+
+            oTooPgLstCus = new sap.m.OverflowToolbar({
+               content:[
+                   new sap.m.ToolbarSpacer(),
+                   oBtnCreateCus,
+                   oBtnRefreshCus
+
+               ]
+            });
+
+            let columns = [
+                new sap.m.Column({
+                    header:new sap.m.Text({text:"Id"})
+                }),
+                new sap.m.Column({
+                    header:new sap.m.Text({text:"Nombre"})
+                }),
+                new sap.m.Column({
+                    header:new sap.m.Text({text:"Apellido"})
+                }),
+                new sap.m.Column({
+                    header:new sap.m.Text({text:"Email"})
+                }),
+                new sap.m.Column({
+                    header:new sap.m.Text({text:"Direccion"})
+                })];
+            oTmpLstCus = new sap.m.ColumnListItem({
+                    type:"Navigation",
+                    cells:[
+                        new sap.m.ObjectIdentifier({text:"{id}"}),
+                        new sap.m.ObjectIdentifier({text:"{name}"}),
+                        new sap.m.ObjectIdentifier({text:"{lastName}"}),
+                        new sap.m.ObjectIdentifier({text:"{email}"}),
+                        new sap.m.ObjectIdentifier({text:"{address}"})
+                    ]
+            });
+            oTblLstCus = new sap.m.Table({
+                headerToolbar:oTooPgLstCus,
+                columns:columns
+            });
+            oTblLstCus.bindItems("/",oTmpLstCus);
+
+            oPgLstCus = new sap.m.Page("listPage",{
+                title:"Lista de clientes"
+            });
+            oPgLstCus.addContent(oTblLstCus);
+
+
+        }
+        function createPageCreate(){
+
+            oInpName = new sap.m.Input();
+            oInpLastName = new sap.m.Input();
+            oInpAddress = new sap.m.Input();
+            oInpEmail = new sap.m.Input();
+            oBtnSaveCus = new sap.m.Button({
+               text:"Grabar",
+               icon:"sap-icon://save",
+               press:saveCustomer
+
+            });
+
+
+            let oSfmCrCus = new sap.ui.layout.form.SimpleForm({
+                title: new sap.ui.core.Title({text:"Crear clientes"}),
+                layout:"ResponsiveGridLayout",
+                labelSpanXL:3,
+                labelSpanL:3,
+                labelSpanM:3,
+                labelSpanS:12,
+                adjustLabelSpan:false,
+                emptySpanXL:4,
+                emptySpanL:4,
+                emptySpanM:4,
+                emptySpanS:0,
+                columnsXL:1,
+                columnsL:1,
+                columnsM:1,
+                singleContainerFullSize:false,
+                content:[
+                    new sap.ui.core.Title({text:"Completar datos de cliente"}),
+                    new sap.m.Label({text:"Nombre"}),
+                    oInpName,
+                    new sap.m.Label({text:"Apellido"}),
+                    oInpLastName,
+                    new sap.m.Label({text:"Email"}),
+                    oInpEmail,
+                    new sap.m.Label({text:"Direccion"}),
+                    oInpAddress,
+                    oBtnSaveCus
+                ]
+            });
+
+
+            oPgCrCus = new sap.m.Page("createPage",{
+                showNavButton:true,
+                content:[
+                    oSfmCrCus
+                ],
+                navButtonPress:function(){
+                    oApp.to("listPage");
+                },
+                title:"Crear Cliente"
+            });
+
+
+        }
+
+        function createCustomer(){
+            oApp.to("createPage");
+        }
+        function refreshListCustomer(){
+            fetchData();
+        }
+        function saveCustomer(){
+
+            if(validate()){
+                let urlService = "http://localhost:8080/ExampleServicesUI5/rest/customer";
+                let urlCreateCustomer;
+                urlCreateCustomer = urlService + "/" + oInpName.getValue() + "/" + oInpLastName.getValue() + "/" + oInpEmail.getValue() +
+                    "/" + oInpAddress.getValue();
+                console.log(urlCreateCustomer);
+
+                jQuery.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: urlCreateCustomer,
+                    dataType: "json",
+                    async: false,
+                    success: function (data, textStatus, jqXHR) {
+                        sap.m.MessageBox.information("Cliente creado:" + data.id);
+                    }
+                });
+            }
+
+        }
+        function validate(){
+            if(oInpName.getValue()==""){
+                oInpName.setValueState("Error");
+                return false;
+            }
+            if(oInpLastName.getValue()==""){
+                oInpLastName.setValueState("Error");
+                return false;
+            }
+            if(oInpEmail.getValue()==""){
+                oInpEmail.setValueState("Error");
+                return false;
+            }
+            if(oInpAddress.getValue()==""){
+                oInpAddress.setValueState("Error");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body class="sapUiBody">
+<div id="content"></div>
+</body>
+</html>

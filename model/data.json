@@ -1,0 +1,7 @@
+{
+  "customerTypes": [
+    {"code": "A01","description":"Normal"},
+    {"code": "A01","description":"Government"},
+    {"code": "A01","description":"Private"}
+  ]
+}

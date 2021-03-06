@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ejemplo webresponsiveness</title>
+    <script id="sap-ui-bootstrap"
+            src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+            data-sap-ui-theme="sap_bluecrystal"
+            data-sap-ui-libs="sap.m,sap.ui.layout"
+           data-sap-ui-resourceroots='{"root":"./"}'>
+    </script>
+    <script>
+        sap.ui.getCore().attachInit(function() {
+
+            //Images
+            let oImgCus=new sap.m.Image({
+                src: "../images/customer_1.png",
+                width:"10cm",
+                height:"10cm",
+                layoutData:new sap.ui.layout.GridData({
+                    span:"XL6L6M12S12"
+                })
+            });
+            let oImgEmp=new sap.m.Image({
+                src: "../images/employee_1.png",
+                width:"10cm",
+                height:"10cm",
+                layoutData:new sap.ui.layout.GridData({
+                    span:"XL6L6M12S12"
+                })
+            });
+
+
+            let oLblImgSel=new sap.m.Label("rbgLabel",{
+                text: "Cual imagen prefieres?",
+                layoutData:new sap.ui.layout.GridData({
+                    span:"XL12L12M12S12"
+                })
+            });
+
+            //Radio buttons
+            var oRbtLeftImg=new sap.m.RadioButton({
+                text: "Izquierda"
+            });
+            var oRbtRightImg=new sap.m.RadioButton({
+                text: "Derecha"
+            });
+            var oRbgImgSel=new sap.m.RadioButtonGroup({
+                columns: 2,
+                ariaLabelledBy: oLblImgSel,
+            });
+            oRbgImgSel.addButton(oRbtLeftImg);
+            oRbgImgSel.addButton(oRbtRightImg);
+
+            let oLytMain = new sap.ui.layout.Grid({content: [
+                    oImgCus,
+                    oImgEmp,
+                    oLblImgSel,
+                    oRbgImgSel
+                ]
+            });
+
+            let oApp = new sap.m.App("oApp");
+            let oPgMain = new sap.m.Page("oPgMain",{
+                title:"Ejemplo WebResponsiveness",
+                content:[oLytMain]
+            });
+            oApp.addPage(oPgMain);
+            oApp.placeAt("content");
+        });
+
+    </script>
+</head>
+<body id="content"class="sapUiBody sapUiResponsiveMargin">
+</body>
+</html>

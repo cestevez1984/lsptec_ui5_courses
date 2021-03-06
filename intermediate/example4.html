@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.m",
+            data-sap-ui-theme="sap_bluecrystal"
+            data-sap-ui-resourceroots='{"root":"./"}'
+            >
+    </script>
+    <script>
+        sap.ui.getCore().attachInit(function (){
+           let oApp = new sap.m.App("app");
+           let oMainPage = new sap.ui.view({
+              type:sap.ui.core.mvc.ViewType.XML,
+              viewName:"root.view.ExampleView3"
+           });
+           oApp.addPage(oMainPage);
+           oApp.placeAt("content");
+        });
+    </script>
+</head>
+
+<body class="sapUiBody">
+<div id="content"></div>
+</body>
+</html>

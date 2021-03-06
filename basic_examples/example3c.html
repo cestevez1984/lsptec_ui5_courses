@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head><title>Example 3</title>
+<script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+        id="sap-ui-bootstrap"
+        data-sap-ui-libs="sap.m,sap.ui.layout"
+        data-sap-ui-theme="sap_bluecrystal"
+        data-sap-ui-resourceroots='{"root":"./"}'></script>
+
+<script>
+    let oApp;
+    let oMainPage;
+    let oLblInputMsg;
+    let oInpMsg;
+
+    sap.ui.getCore().attachInit(function(){
+        jQuery.sap.require("sap.m.MessageBox");
+
+       oLblInputMsg = new sap.m.Label({
+           text:"Mensaje Input"
+       }) ;
+       oInpMsg = new sap.m.Input();
+
+       let oBtnAlert = new sap.m.Button({
+           text:"Alerta",
+           width:"5cm",
+           press:showAlert
+       });
+        let oBtnConfirm = new sap.m.Button({
+            text:"Confirm",
+            width:"5cm",
+            press:showConfirm
+        });
+        let oBtnError = new sap.m.Button({
+            text:"Error",
+            width:"5cm",
+            press:showError
+        });
+        let oBtnSuccess = new sap.m.Button({
+            text:"Success",
+            width:"5cm",
+            press:showSuccess
+        });
+
+        let oVlyMainPage = new sap.ui.layout.VerticalLayout({
+            content:[oLblInputMsg,oInpMsg,oBtnAlert,oBtnConfirm,oBtnError,oBtnSuccess]
+        })
+
+        oApp = new sap.m.App("oApp");
+        oMainPage = new sap.m.Page("oMainPage",{
+            title:"Pagina principal"
+        });
+        oMainPage.addContent(oVlyMainPage);
+
+
+        oApp.addPage(oMainPage);
+        oApp.placeAt("content");
+    });
+
+
+    function showAlert(){
+        sap.m.MessageBox.alert(oInpMsg.getValue());
+    }
+    function showError(){
+        sap.m.MessageBox.error(oInpMsg.getValue());
+    }
+    function showSuccess(){
+        sap.m.MessageBox.success(oInpMsg.getValue());
+    }
+    function showConfirm(){
+        sap.m.MessageBox.confirm(oInpMsg.getValue(),{
+            title:"Confirmar Operacion",
+            onClose:function (action){
+                if(action==sap.m.MessageBox.Action.OK){
+                    sap.m.MessageBox.information("Operacion Confirmada");
+                }
+                if(action==sap.m.MessageBox.Action.CANCEL){
+                    sap.m.MessageBox.information("Operacion Cancelada");
+                }
+            }
+        });
+    }
+</script>
+</head>
+<body class="sapUiBody sapUiResponsiveMargin">
+<div id="content"></div>
+</body>
+
+</html>
