@@ -1,0 +1,43 @@
+method if_http_extension~handle_request.
+
+
+  data: lt_fields       type tihttpnvp,
+        lv_header_query type string,
+        lv_html         type string,
+        l_query_string  type string,
+        v_name          type string,
+        w_method        type string,
+        v_import_data   type string,
+        html            type string,
+        v_client TYPE string,
+        stateful        type string.
+
+  field-symbols: <fs_field>       like line of lt_fields.
+
+
+  server->request->get_header_fields(
+    changing
+      fields = lt_fields    " Header fields
+  ).
+  l_query_string = server->request->get_header_field( '~QUERY_STRING' ).
+  replace all occurrences of '%22' in l_query_string with '"'.
+  split l_query_string at '&' into  v_client v_name.
+
+
+
+  html = '<html><body><h2>Hola mundo</h2>'.
+  if v_name is NOT INITIAL.
+     CONCATENATE  html '<p>Hecho por:' v_name '</p>' INTO html.
+  endif.
+  CONCATENATE html '</body></html>' INTO html.
+
+
+
+  server->response->set_content_type( 'application/html' ).
+  server->response->set_header_field( name = 'Contentp-Type'
+                                                     value = 'text/html'  ).
+  server->response->set_cdata( html ).
+  server->response->set_status( code = 200 reason = 'Respuesta correcta' ).
+
+
+endmethod.
