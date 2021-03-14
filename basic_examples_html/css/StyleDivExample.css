@@ -1,0 +1,59 @@
+.mainContent{
+    width: 80%;
+    height: 80%;
+}
+.header{
+    width: 100%;
+    height: 20%;
+    border: 2px solid black;
+    background-color: darkseagreen;
+    padding : 1%;
+}
+.churchill
+{
+    width: 7cm;
+    height: 12cm;
+    color: white;
+    padding : 1%;
+    float: left;
+    background-color: cornflowerblue;
+    margin-left: 40px;
+    margin-top: 20px;
+    border: 2px solid black;
+}
+.roosevelt
+{
+    width: 7cm;
+    height: 12cm;
+    color: white;
+    padding : 1%;
+    border: 2px solid black;
+    float: left;
+    margin-top: 20px;
+    margin-left: 30px;
+    background-color:indianred;
+}
+.mussolini
+{
+    width: 7cm;
+    height: 12cm;
+    color: white;
+    padding : 1%;
+    border: 2px solid black;
+    float: left;
+    margin-top: 20px;
+    margin-left: 30px;
+    background-color: #ff006e;
+}
+.img_biorgrafy{
+    padding: 20px;
+    width: 150px;
+    float: left;
+}
+.titleHeader{
+    text-align: center;
+    font-weight: bold;
+}
+.nameSpecialFont{
+    font-family: "Arial Narrow"
+}
