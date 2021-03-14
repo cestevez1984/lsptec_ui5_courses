@@ -1,71 +1,104 @@
 <!DOCTYPE html>
 <html>
 <body>
-<head>
-</head>
+<head><title>Ejemplo con elementos FORMS</title></head>
+<link rel="stylesheet" href="css/StyleForms.css">
 <body>
-<form>
+<form action="http://localhost:8080/CursoUI5/ServiceFormTest" method="post">
 <table>
+	<thead>
+		<th>Descripcion Campo</th>
+		<th>Campo</th>
+	</thead>
 <tr>
-	<th>
-		Campo Correo
-	</th>
-	<td>
-		<input type="email" name="emailField"/>
-	<td>
+		<td>Email Field</td>
+		<td><input type="email" name="emailField"></td>
 </tr>
 <tr>
-	<th>Campo URL</th>
+	<td>URL Field</td>
 	<td><input type="url" name="urlField"/></td>
 </tr>	
 <tr>
-	<th>Campo Numero</th>
+	<td>Numeric Field</td>
 	<td><input type="number" name="numberField"/></td>
 </tr>
 <tr>
-	<th>Campo Rango</th>
+	<td>Range Field</td>
 	<td><input type="range" name="Range"/></td>
 </tr>
 <tr>
-	<th>Campo Rango Limitado</th>
+	<td>Limit Range Field</td>
 	<td><input type="range" name="rangeField"
     min="100" max="200" step="2"/></td>
 </tr>
 <tr>
-	<th>Campo Fecha</th>
+	<td>Date Field</td>
 	<td><input type="date" name="dateField"/></td>
 </tr>
 <tr>
-	<th>Campo Tiempo</th>
+	<td>Time Field</td>
 	<td><input type="time" name="timeField"/></td>
 </tr>
 <tr>
-	<th>Campo Mes</th>
+	<td>Week Field</td>
 	<td><input type="week" name="weekField"/></td>
 </tr>
 <tr>
-	<th>Campo Color</th>
+	<td>Color Field</td>
 	<td><input type="color" name="colorField"/></td>
 </tr>
 <tr>
-	<th>Campo Texto AutoFocus</th>
-	<td><input type="text" name="comboBoxField" autofocus></td>
+	<td>AutoFocus</td>
+	<td><input type="text" name="textFieldAuto" autofocus></td>
 </tr>
 <tr>
-	<th>Campo con Placeholder</th>
-	<td><input type="text" name="textField" placeholder="Type in here"></td>
+	<td>Placeholder</td>
+	<td><input type="text" name="textFieldPlaceHolder" placeholder="Ejemplo"></td>
 </tr>
 <tr>
-	<th>Campo Requerido</th>
+	<td>Required Field</td>
 	<td><input type="text" name="textField" required></td>
 </tr>
 <tr>
-	<th>Campo con Patron</th>
-	<td><input type="text" name="textField" pattern="[A-Z][0-9]"></td>
+	<td>CheckBox</td>
+	<td><label for="checkBox">Seleccionar Opcion</label>
+		<input type="checkbox" name="CheckBox" id = "checkBox"></td>
 </tr>
 <tr>
-<td></td>
-<td><button>Grabar</button></td>
+		<td>ComboBox</td>
+		<td><label for="cars">Choose a car:</label>
+		<select id="cars" name="cars">
+			<option value="volvo">Volvo</option>
+			<option value="saab">Saab</option>
+			<option value="fiat">Fiat</option>
+			<option value="audi">Audi</option>
+		</select></td>
+</tr>
+<tr>
+	<td>DataList</td>
+	<td>
+		<input list="browsers" name="browser">
+		<datalist id="browsers">
+			<option value="Internet Explorer">
+			<option value="Firefox">
+			<option value="Chrome">
+			<option value="Opera">
+			<option value="Safari">
+		</datalist>
+	</td>
+</tr>
+	<tr>
+		<td>Radio Button Field</td>
+		<td><input type="radio" id="male" name="gender" value="male">
+		<label for="male">Male</label><br>
+		<input type="radio" id="female" name="gender" value="female">
+		<label for="female">Female</label><br>
+		<input type="radio" id="other" name="gender" value="other">
+		<label for="other">Other</label></td>
+	</tr>
+<tr>
+	<td></td>
+	<td><button>Grabar</button></td>
 </tr>
 </table>
 </form>
