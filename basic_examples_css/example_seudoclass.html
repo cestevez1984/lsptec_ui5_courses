@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manejo de seudoclases</title>
+<style>
+    /* unvisited link */
+    a:link {
+        color: red;
+    }
+    /* visited link */
+    a:visited {
+        color: green;
+    }
+    /* selected link */
+    a:active {
+        color: blue;
+    }
+    /*a:hover{*/
+    /*    color: violet;*/
+    /*    font-size: x-large;*/
+    /*}*/
+     mouse over link
+    a.chrome:hover {
+        color: indianred;
+        font-size: 20px;
+    }
+    a.firefox:hover {
+        color: orange;
+        font-size: 20px;
+    }
+    a.edge:hover {
+        color: darkblue;
+        font-size: 20px;
+    }
+
+</style>
+</head>
+<body>
+<h3>Navegadores mas usados</h3>
+<ol>
+    <li><a href="http://www.google.com" class="chrome">Chrome</a></li>
+    <li><a href="https://www.mozilla.org/en-US/firefox/new/" class="firefox">Firefox</a></li>
+    <li><a href="https://www.microsoft.com/en-us/edge" class="edge">Edge</a></li>
+</ol>
+</body>
+</html>
