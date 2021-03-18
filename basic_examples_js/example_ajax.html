@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--//https://restcountries.eu/rest/v2/alpha/co-->
+<html>
+<head>
+    <title>Ejemplo con Ajax</title>
+    <link rel="stylesheet" href="css/TableStyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function getDetailCountry(){
+            let xhttp = new XMLHttpRequest();
+            let vCountry = document.getElementById("country");
+            let url = "https://restcountries.eu/rest/v2/alpha/"+vCountry.value;
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // document.getElementById("demo").innerHTML = this.responseText;
+                    let oData = JSON.parse(xhttp.responseText);
+                    document.getElementById("pResult").innerHTML = "Nombre:"+oData.name+",Region:"+oData.capital;
+                    vCountry.value = "";
+                }
+            };
+            xhttp.open("GET", url, true);
+            xhttp.send();
+
+        }
+        // $(document).ready(function(){
+        //     $("#btnConsult").click(function(){
+        //         $.ajax({
+        //             type:"GET",
+        //             contentType: false,
+        //             processData: false,
+        //             url: "https://restcountries.eu/rest/v2/alpha/co",
+        //             success: function(data, textStatus){
+        //                 let oData = data;
+        //                 document.getElementById("pResult").innerHTML = "Nombre:"+oData.name+",Region:"+oData.capital;
+        //             }});
+        //     });
+        // });
+    </script>
+</head>
+<body>
+    <table>
+        <caption>Consulta pais</caption>
+        <tbody>
+            <tr>
+                <td>Pais</td>
+                <td><input id = "country" type="text" placeholder="Consultar PAIS"></td>
+            </tr>
+            <tr>
+                <td><input type = "submit" id = "btnConsult" value="Consultar" onclick="getDetailCountry()"></input></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+<hr>
+<p id ="pResult"></p>
+
+</body>
+</html>

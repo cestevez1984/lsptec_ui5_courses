@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejemplo con Clases</title>
+    <script language="JavaScript" src="js/exampleClasses.js"></script>
+    <script>
+        function executeExample() {
+            let oBusinessPartner = new Vendor("Jose", "Durant");
+            oBusinessPartner.create();
+            alert(oBusinessPartner.get());
+        }
+    </script>
+</head>
+<body>
+<button onclick="executeExample()">Ejecutar Ejemplo</button>
+</body>
+</html>

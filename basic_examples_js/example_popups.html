@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejemplo con Dialogos</title>
+    <script>
+        function example1(){
+            let vData = window.confirm("Estas seguro de continuar?")
+            if(vData){
+                alert("Confirmacion aceptada");
+            }else{
+                alert("Confirmacion Rechazada");
+            }
+        }
+        function example2(){
+            let val1 = window.prompt("Numero 1");
+            let val2 = window.prompt("Numero 2");
+            let val3 = Number(val1) + Number(val2);
+            alert("Resultado:"+val3)
+        }
+    </script>
+</head>
+<body onload="example2()">
+
+</body>
+</html>

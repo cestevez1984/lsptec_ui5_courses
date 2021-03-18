@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejemplo con Fechas</title>
+    <script language="JavaScript">
+        function executeExample(){
+            let date1 = new Date(); //Fecha actual
+            let date2 = new Date("03/01/2021"); //Fecha normal
+            let month = date2.getMonth(); //Mes
+            let strDate = date2.toDateString(); //Formato mas leible
+            document.getElementById("resultP2").innerHTML = strDate;
+        }
+    </script>
+</head>
+<body>
+<button onclick="executeExample()">Ejecutar Ejemplo</button>
+<p id="resultP2"></p>
+</body>
+</html>

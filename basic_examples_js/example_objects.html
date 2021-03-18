@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejemplo con Objetos</title>
+    <script>
+        function executeExample() {
+            let oCustomer = {
+                    name:"Jose",
+                    lastName:"Durant",
+                    type:"Customer",
+                    address:"Avenida las luces",
+                    create:function(){
+                        alert("Cliente Creado");
+                    }
+            };
+            let oVendor = {
+                name:"Juan",
+                lastName:"Durant",
+                type:"Customer",
+                address:"Avenida principal",
+                create:function(){
+                    alert("Proveedor Creado");
+                }
+            };
+            //receiptBusinessPartner(oVendor);
+            convertObjToJson(oVendor);
+        }
+        function receiptBusinessPartner(pOBusinessPartner){
+            pOBusinessPartner.create();
+        }
+        function convertObjToJson(pOBusinessPartner){
+            alert(pOBusinessPartner);
+            let oJsoBusinessPartner = JSON.stringify(pOBusinessPartner);
+            alert(oJsoBusinessPartner);
+
+            // let oCustomer = JSON.parse(oJsoBusinessPartner);
+            // oCustomer.create();
+        }
+
+    </script>
+</head>
+<body>
+<button onclick="executeExample()">Ejecutar Ejemplo</button>
+</body>
+</html>

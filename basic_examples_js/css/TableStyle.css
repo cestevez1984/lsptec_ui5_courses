@@ -1,0 +1,30 @@
+table{
+    border: 2px solid #774F38;
+    border-collapse: collapse;
+    margin: auto;
+}
+td{
+    padding: 3px;
+}
+thead{
+    background-color: #F1D4AF;
+}
+caption{
+    background-color: #F1D4AF;
+    border: 1px solid #774F38;
+}
+.mainContent{
+    border: 2px solid #774F38;
+    width: 800px;
+    height: 280px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+.result{
+    background-color: mediumseagreen;
+    font-weight: bold;
+    font-size: large;
+}

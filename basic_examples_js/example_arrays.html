@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejemplo con Arreglos</title>
+    <link rel="stylesheet" href="css/TableStyle.css">
+    <script>
+
+        function loadData(){
+            let vArrCars = ["Sedan","Camioneta","Hashback","Deportivo"];
+            let cSelCars = document.getElementById("selCars");
+            for(i=0;i<vArrCars.length;i++){
+                let cOptCarType = document.createElement("option");
+                cOptCarType.text = vArrCars[i];
+                cOptCarType.value = vArrCars[i];
+                cSelCars.appendChild(cOptCarType);
+            }
+        }
+        function loadData2(){
+            let vArrCars = ["Sedan","Camioneta","Hashback","Deportivo"];
+            //vArrCars.push("Camion");
+            //delete vArrCars[0];
+            //vArrCars.sort();
+            let cSelCars = document.getElementById("selCars");
+            vArrCars.forEach(addChild);
+        }
+        function addChild(value){
+            let cSelCars = document.getElementById("selCars");
+            let cOptCarType = document.createElement("option");
+            cOptCarType.text = value;
+            cOptCarType.value = value;
+            cSelCars.appendChild(cOptCarType);
+        }
+    </script>
+</head>
+<body onload="loadData2()">
+<form>
+<table>
+    <caption>Ejemplo con Arreglos</caption>
+    <thead>
+        <th></th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Nombre</td>
+            <td><input type="text" required placeholder="Nombre"></td>
+        </tr>
+        <tr>
+            <td>Apellido</td>
+            <td><input type="text" required placeholder="Apellido"></td>
+        </tr>
+        <tr>
+            <td>Preferencia Carro</td>
+            <td><select id="selCars" name="cars"></select></td>
+        </tr>
+    </tbody>
+</table>
+</form>
+</body>
+</html>
