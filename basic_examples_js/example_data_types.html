@@ -9,20 +9,21 @@
 
     function handleTypeOf() {
         let vStrAuto = "Automovil";
-        let vStrResult = typeof x; //Debe retornar un String
+        let vStrResult = typeof vStrAuto; //Debe retornar un String
+
         let vFloPi = 3.14;
-        vStrResult = typeof 3.14                // Debe retornar number
+        //vStrResult = typeof vFloPi;                // Debe retornar number
         let vBooDecision = true;
-        vStrResult = typeof true                // Debe retornar Booleano
+        vStrResult = typeof vBooDecision;                // Debe retornar Booleano
 
         document.getElementById("resultP").innerHTML = "<br>"+vStrResult+"</br>";
     }
     function handleDataTypes1(){
         let vIntLength = 16;
         let vStrlastName = "Johnson";
-        let vArrNames = {firstName:"John", lastName:"Doe"};
+
         let vResult1 = 16 + "Volvo";
-        let vResult2 = 16 + "Volvo";
+        let vResult2 = 16 + "Volvo"+18;
         let vResult3 = "Volvo" + 16;
         let vResult4 = 16 + 4 + "Volvo";
 
@@ -46,10 +47,12 @@
         let vStrAllRight = "It's alright";             // Single quote inside double quotes
         let vStrMsg1 = "He is called 'Peter'";    // Single quotes inside double quotes
         let vStrMsg2 = 'He is called "Peter"';    // Double quotes inside single quotes
+        console.log(vStrMsg1);
 
         //Convertir numero a String
         let vIntNr1 = 12;
-        let vStrResult = String(vIntNr1);
+        // let vStrResult = String(vIntNr1);
+        // let number = Number(vStrResult);
     }
     function handleNumbers(){
         var xx1 = 34.00;     // Con decimales
@@ -70,9 +73,16 @@
         let z = 6;
         let result1 = (x == y);       // Retorna true
         let result2 = (x == z);       // Returna false
+        console.log(result1);
+        console.log(result2);
+
     }
     function handleArrays(){
         let vArrCars = ["Saab", "Volvo", "BMW"];
+        // alert(vArrCars);
+        for(i=0; i<vArrCars.length; i++){
+            alert(vArrCars[i]);
+        }
     }
     function handleObject(){
         let oPerson = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
@@ -81,7 +91,7 @@
 
 </script>
 <body>
-<button onclick="handleNumbers()">Ejecutar Ejemplo</button>
+<button onclick="handleArrays()">Ejecutar Ejemplo</button>
 <p id="resultP"></p>
 </body>
 </html>

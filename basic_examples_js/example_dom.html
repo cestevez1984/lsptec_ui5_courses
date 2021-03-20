@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo con objetos DOM</title>
+    <style>
+        h3{
+            text-align: center;
+            color: royalblue;
+            font-family: Calibri;
+            border: 1px solid dimgray;
+            background-color: darkgray;
+        }
+        #divMainApp{
+            border: 2px solid black;
+            width: 700px;
+            height: 800px;
+            margin: auto;
+        }
+        #tblHandleCustomers{
+
+        }
+        #tblAddCustomers,#tblHandleCustomers{
+            border: 2px solid darkgray;
+            margin: auto;
+            border-collapse: collapse;
+            width: 300px;
+        }
+        th{
+            font-family: Calibri;
+            color: darkgray;
+            background-color: royalblue;
+        }
+        td{
+            border: 1px solid darkgray;
+        }
+    </style>
+    <script>
+
+        function addCustomer(){
+
+            //Obtenemos la referencia de la tabla y los campos de entrada
+            let cInpCustName = document.getElementById("inpCustName");
+            let cInpCustLastName = document.getElementById("inpCustLastName");
+            let cTblHandleCust = document.getElementById("tblHandleCustomers");
+            let cColCust = document.getElementById("color");
+
+            //Agregamos una fila nueva
+            let vIntRows = cTblHandleCust.rows.length;
+            let oNewRow = cTblHandleCust.insertRow(vIntRows);
+
+            //Creamos los parrafos que colocamos en los elmementos TD
+            let cParName = document.createElement("p");
+            cParName.innerHTML = cInpCustName.value;
+            cParName.style="color:"+cColCust.value;
+
+            let cParLastName = document.createElement("p");
+            cParLastName.innerHTML = cInpCustLastName.value;
+            cParLastName.style="color:"+cColCust.value;
+
+            //Creamos los elementos TD
+            let cTdName = oNewRow.insertCell(0);
+            let cTdLastName = oNewRow.insertCell(1);
+
+            //Agregamos los parrafos a cada elemento TD
+            cTdName.appendChild(cParName);
+            cTdLastName.appendChild(cParLastName);
+
+        }
+        function clearFields(){
+            document.getElementById("inpCustName").value = "";
+            document.getElementById("inpCustLastName").value = "";
+            let cTblHandleCust = document.getElementById("tblHandleCustomers");
+            for(i=1; cTblHandleCust.rows.length; i++){
+                cTblHandleCust.deleteRow(i);
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+<div id="divMainApp">
+    <div id="dAddCustomers">
+        <h3>Crear clientes</h3>
+        <table id="tblAddCustomers">
+            <thead>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Color</td>
+                <td><input type="color" id="color"></td>
+            </tr>
+            <tr>
+                <td>Nombre</td>
+                <td><input type="text" id = "inpCustName" placeholder="Colocar nombre"></td>
+            </tr>
+            <tr>
+                <td>Apellido</td>
+                <td><input type="text" id = "inpCustLastName" placeholder="Colocar Apellido"></td>
+            </tr>
+            <tr>
+                <td><button onclick="addCustomer()">Agregar Cliente</button> </td>
+                <td><button onclick="clearFields()">Limpiar</button> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h3>Manejo de clientes</h3>
+        <table id="tblHandleCustomers">
+            <thead>
+                <th>Nombre</th>
+                <th>Apellido</th>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>

@@ -10,17 +10,13 @@
             let cSelCars = document.getElementById("selCars");
             for(i=0;i<vArrCars.length;i++){
                 let cOptCarType = document.createElement("option");
-                cOptCarType.text = vArrCars[i];
-                cOptCarType.value = vArrCars[i];
+                     cOptCarType.text = vArrCars[i];
+                     cOptCarType.value = vArrCars[i];
                 cSelCars.appendChild(cOptCarType);
             }
         }
         function loadData2(){
             let vArrCars = ["Sedan","Camioneta","Hashback","Deportivo"];
-            //vArrCars.push("Camion");
-            //delete vArrCars[0];
-            //vArrCars.sort();
-            let cSelCars = document.getElementById("selCars");
             vArrCars.forEach(addChild);
         }
         function addChild(value){
@@ -32,7 +28,7 @@
         }
     </script>
 </head>
-<body onload="loadData2()">
+<body  onload="loadData2()">
 <form>
 <table>
     <caption>Ejemplo con Arreglos</caption>
@@ -53,6 +49,7 @@
             <td>Preferencia Carro</td>
             <td><select id="selCars" name="cars"></select></td>
         </tr>
+
     </tbody>
 </table>
 </form>

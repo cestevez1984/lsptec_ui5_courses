@@ -4,10 +4,31 @@
     <title>Ejemplo con Funciones</title>
     <script>
         function executeExample() {
+
+            let vStrData = "JavaScript es un lenguaje magnifico";
+            let result = showMessage(vStrData,"dsadasd");
+            if(result=="Error"){
+                alert("Opcion incorrecta");
+            }
+
+        }
+        function showMessage(message,messageType){
+            if(messageType=="popup"){
+                alert(message);
+                return "Success";
+            }else if(messageType=="html"){
+                let cParMain = document.getElementById("pResult");
+                cParMain.innerHTML = message;
+                return "Success";
+            }else{
+                return "Error";
+            }
+
         }
     </script>
 </head>
 <body>
 <button onclick="executeExample()">Ejecutar Ejemplo</button>
+<p id="pResult"></p>
 </body>
 </html>

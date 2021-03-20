@@ -4,11 +4,12 @@
     <title>Ejemplo con Fechas</title>
     <script language="JavaScript">
         function executeExample(){
-            let date1 = new Date(); //Fecha actual
-            let date2 = new Date("03/01/2021"); //Fecha normal
-            let month = date2.getMonth(); //Mes
+            //let date1 = new Date(); //Fecha actual
+            let date2 = new Date("01/14/2021"); //Fecha normal
+            let month = date2.getMonth()+1; //Mes
+
             let strDate = date2.toDateString(); //Formato mas leible
-            document.getElementById("resultP2").innerHTML = strDate;
+            document.getElementById("resultP2").innerHTML = month;
         }
     </script>
 </head>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejemplo JavaScript Operaciones Clases</title>
+    <link rel="stylesheet" href="css/TableStyle.css">
+
+</head>
+<script src="js/Calculator.js"></script>
+<script language="JavaScript">
+    function execute(){
+        let vNumberOne = Number(document.getElementById("inNumber1").value);
+        let vNumberTwo = Number(document.getElementById("inNumber2").value);
+        let vLstOper = document.getElementById("cmOper").options;
+        let vSelOper = vLstOper[vLstOper.selectedIndex].value;
+
+        let oCalculator = new Calculator(vNumberOne,vNumberTwo,vSelOper);
+        let val = oCalculator.ejecutarOperacion();
+        document.getElementById("pResult").innerHTML=val;
+    }
+</script>
+<body>
+<div class="mainContent">
+<form>
+<table>
+    <caption>Operaciones aritmeticas</caption>
+    <thead>
+        <th></th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Numero 1</td>
+            <td><input id="inNumber1" type="number" placeholder="Digite numero 1" required></td>
+        </tr>
+        <tr>
+            <td>Numero 2</td>
+            <td><input id="inNumber2" type="number" placeholder="Digite numero 2" required></td>
+        </tr>
+        <tr>
+            <td>Operacion</td>
+            <td><select id="cmOper">
+                <option value="sumar">Sumar(+)</option>
+                <option value="restar">Restar(-)</option>
+                <option value="multiplicar">Multiplicar(*)</option>
+                <option value="dividir">Dividir(/)</option>
+            </select></td></td>
+        </tr>
+        <tr>
+            <td><button type="button" onclick="execute()">Ejecutar</button></td>
+            <td><input type="reset" value="Limpiar"></td>
+        </tr>
+        <tr>
+            <td class="result">RESULTADO</td>
+            <td class="result"><p id="pResult"></p></td>
+        </tr>
+
+    </tbody>
+</table>
+</form>
+</div>
+</body>
+</html>

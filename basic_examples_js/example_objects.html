@@ -22,20 +22,17 @@
                     alert("Proveedor Creado");
                 }
             };
-            //receiptBusinessPartner(oVendor);
-            convertObjToJson(oVendor);
-        }
-        function receiptBusinessPartner(pOBusinessPartner){
-            pOBusinessPartner.create();
-        }
-        function convertObjToJson(pOBusinessPartner){
-            alert(pOBusinessPartner);
-            let oJsoBusinessPartner = JSON.stringify(pOBusinessPartner);
-            alert(oJsoBusinessPartner);
-
-            // let oCustomer = JSON.parse(oJsoBusinessPartner);
             // oCustomer.create();
+            // alert(oCustomer.name+","+oCustomer.lastName);
+            //
+             alert(oVendor);
+             let vStrVendor = JSON.stringify(oVendor);
+             alert(vStrVendor);
+
+             let oObject = JSON.parse(vStrVendor);
+             console.log(oObject);
         }
+
 
     </script>
 </head>

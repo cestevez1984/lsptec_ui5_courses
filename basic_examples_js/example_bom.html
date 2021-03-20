@@ -5,10 +5,10 @@
     <script>
         function executeExampleLocation() {
             let vData;
-            //vData = window.location.hostname;
-            vData = window.location.pathname;
-            vData = window.location.href;
-            vData = window.location.port;
+            vData = window.location.hostname;
+            //vData = window.location.pathname;
+            //vData = window.location.href;
+            //vData = window.location.port;
             document.getElementById("resultP").innerHTML = vData;
         }
         function executeExampleHistory(){
@@ -20,7 +20,7 @@
 </head>
 <body onload="executeExampleLocation()">
 <p id="resultP"></p>
-<button onclick="executeExampleHistory()">Ir a Google de vuelta</button>
-<a href="http://www.google.com">Ir a google</a>
+<!--<button onclick="executeExampleHistory()">Ir a Google de vuelta</button>-->
+<!--<a href="http://www.google.com">Ir a google</a>-->
 </body>
 </html>
