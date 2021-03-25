@@ -1,0 +1,44 @@
+<!-- Pagina creada: 3/23/2021 por carlos-->
+<html>
+<head><title>Ejemplo ToolBar UI5</title>
+    <script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.m,sap.ui.layout"
+            data-sap-ui-theme="sap_bluecrystal"></script>
+    <script>
+        sap.ui.getCore().attachInit(function () {
+            let oApp = new sap.m.App("app");
+            let oBtnAdd = new sap.m.Button({
+                text:"Agregar",
+                icon:"sap-icon://add-employee"
+            });
+            let oBtnDelete = new sap.m.Button({
+                    text:"Eliminar",
+                    icon:"sap-icon://delete"
+                }
+            );
+            let oCmbOptions = new sap.m.ComboBox({
+                items:[new sap.ui.core.ListItem({text:"Opcion 1"}),
+                    new sap.ui.core.ListItem({text:"Opcion 2"})],
+            })
+            let oTlbOpt = new sap.m.Toolbar({
+               content:[
+                   new sap.m.ToolbarSpacer(),
+                   oBtnAdd,
+                   oBtnDelete,
+                   oCmbOptions,
+                   new sap.m.ToolbarSpacer()
+               ]
+            });
+            let oPage = new sap.m.Page("page",{
+                content:[oTlbOpt]
+            });
+            oApp.addPage(oPage);
+            oApp.placeAt("content");
+        });
+    </script>
+</head>
+<body>
+<div id="content"></div>
+</body>
+</html>

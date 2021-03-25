@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<head><title>Example 3</title>
+<head><title>Ejemplo controles UI5</title>
     <script src="http://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
             data-sap-ui-libs="sap.m,sap.ui.layout"
             data-sap-ui-theme="sap_bluecrystal"
@@ -24,6 +24,23 @@
         let oDtpBirthDate;
         let oLblBirthDate;
 
+
+        sap.ui.getCore().attachInit(function (){
+            initControls();
+            var oVrtLayout = new sap.ui.layout.VerticalLayout({
+                content:[oImgCust,oCmbCustType,oLblName,oTxtName,oLblLastName,oTxtLastName,
+                    oLblAddress,oTxtAddress,oRdgGender,oLblBirthDate,oDtpBirthDate]
+            });
+            oPage = new sap.m.Page("page",{
+                title:"Pagina Principal",
+                content:[oTlbMainPage,oVrtLayout]
+            });
+            oApp = new sap.m.App('app',{
+                initialPage:oPage
+            });
+            oApp.addPage(oPage);
+            oApp.placeAt("content");
+        });
 
         function initControls(){
 
@@ -71,8 +88,8 @@
             oCmbCustType = new sap.m.ComboBox({
                 showSecondaryValues:true,
                 items:[
-                    new sap.ui.core.ListItem({text:"Normal",key:"C1",additionalText:"C1"}),
-                    new sap.ui.core.ListItem({text:"Gobierno",key:"C1"})
+                    new sap.ui.core.ListItem({text:"Normal",key:"NR",additionalText:"C1"}),
+                    new sap.ui.core.ListItem({text:"Gobierno",key:"GB"})
                     ]
             });
 
@@ -87,32 +104,10 @@
             });
             oRdgGender.addButton(oRdMale);
             oRdgGender.addButton(oRdFemale);
-            oRdFemale.setSelected(true);
-
+            //oRdFemale.setSelected(true);
+            oRdMale.setSelected(true);
 
         }
-
-        sap.ui.getCore().attachInit(function (){
-
-            initControls();
-
-
-            var oVrtLayout = new sap.ui.layout.VerticalLayout({
-               content:[oImgCust,oCmbCustType,oLblName,oTxtName,oLblLastName,oTxtLastName,
-                   oLblAddress,oTxtAddress,oRdgGender,oLblBirthDate,oDtpBirthDate]
-            });
-
-            oPage = new sap.m.Page("page",{
-               title:"Pagina Principal",
-                content:[oTlbMainPage,oVrtLayout]
-            });
-
-            oApp = new sap.m.App('app',{
-                initialPage:oPage
-            });
-            oApp.addPage(oPage);
-            oApp.placeAt("content");
-        });
     </script>
 </head>
 <body class="sapUiBody sapUiResponsiveMargin">

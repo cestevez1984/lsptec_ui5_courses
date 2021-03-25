@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head><title>Ejemplo Hola Mundo con UI5</title>
+    <style>
+        .btnStyle1{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+    <script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.m,sap.ui.layout"
+            data-sap-ui-theme="sap_bluecrystal"
+            data-sap-ui-resourceroots='{"root":"./"}'
+            >
+    </script>
+    <script>
+        sap.ui.getCore().attachInit(function(){
+            let oApp = new sap.m.App("app");
+
+            let btnHello = new sap.m.Button({
+                text:"Mostrar mensaje",
+                press:function () {
+                    alert("Hello World");
+                }
+            });
+            btnHello.setType(sap.m.ButtonType.Default);
+
+            let oPage = new sap.m.Page("oPage",{
+                title:"Pagina Prueba",
+                content:[btnHello]
+            });
+            oApp.addPage(oPage);
+            oApp.placeAt("content");
+        });
+    </script>
+</head>
+<body class="sapUiBody">
+    <div id="content"></div>
+</body>
+</html>

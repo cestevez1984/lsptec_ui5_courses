@@ -1,6 +1,7 @@
 <!--Created on:2/25/2021 and created by:carlos-->
+<!DOCTYPE html>
 <html>
-<head><title>example4</title>
+<head><title>Mantenimiento de clientes UI5</title>
     <script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
             id="sap-ui-bootstrap"
             data-sap-ui-libs="sap.m,sap.ui.layout"
@@ -23,9 +24,10 @@
 
         sap.ui.getCore().attachInit(function () {
             jQuery.sap.require("sap.m.MessageBox");
-            fetchData();
-            createPageList();
-            createPageCreate();
+
+            fetchData(); //En esta funcion consultamos todos los clientes
+            createPageList(); //En esta funcion creamos nuestra pagina de lista de clientes
+            createPageCreate(); //En esta funcion creamos nuestra pagina de creacion clientes
 
 
             oApp = new sap.m.App("oApp");

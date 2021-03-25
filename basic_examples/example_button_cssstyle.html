@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head><title>Ejemplo UI5 Manipulando CSS</title>
+    <script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.m,sap.ui.layout"
+            data-sap-ui-theme="sap_bluecrystal"
+            data-sap-ui-resourceroots='{"root":"./"}'
+            >
+    </script>
+    <style>
+        .btnStyle>.sapMBtnInner{
+            width: 500px;
+            height: 100px;
+            text-align: center;
+            padding-top: 20px;
+            background: #774F38;
+            color: white;
+            border: 3px solid white;
+        }
+    </style>
+    <script>
+        sap.ui.getCore().attachInit(function(){
+            let oApp = new sap.m.App("app");
+
+            let btnHello = new sap.m.Button({
+                text:"Mostrar mensaje",
+                press:function () {
+                    alert("Hello World");
+                }
+            });
+            btnHello.addStyleClass("btnStyle");
+
+            let oPage = new sap.m.Page("oPage",{
+                title:"Pagina Prueba",
+                content:[btnHello]
+            });
+            oApp.addPage(oPage);
+            oApp.placeAt("content");
+        });
+    </script>
+</head>
+<body class="sapUiBody">
+    <div id="content"></div>
+</body>
+</html>
