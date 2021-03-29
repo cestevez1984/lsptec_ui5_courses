@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejemplo UI5 con SimpleForms</title>
+    <script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+            id="sap-ui-bootstrap"
+            data-sap-ui-libs="sap.m,sap.ui.layout"
+            data-sap-ui-theme="sap_bluecrystal"></script>
+    <script>
+        sap.ui.getCore().attachInit(function () {
+            let oTlbAction = new sap.m.Toolbar({
+                content:[
+                    new sap.m.ToolbarSpacer(),
+                    new sap.m.Button({text:"Grabar",type:sap.m.ButtonType.Emphasized,icon:"sap-icon://save"}),
+                    new sap.m.Button({text:"Cancelar",type:sap.m.ButtonType.Emphasized,icon:"sap-icon://sys-cancel"})
+                ]
+            });
+            let oSfmCrCus = new sap.ui.layout.form.SimpleForm({
+                title: new sap.ui.core.Title({text:"Crear clientes"}),
+                layout:"ResponsiveGridLayout",
+                labelSpanXL:1,
+                labelSpanL:3,
+                labelSpanM:3,
+                labelSpanS:1,
+                adjustLabelSpan:false,
+                emptySpanXL:1,
+                emptySpanL:1,
+                emptySpanM:1,
+                emptySpanS:1,
+                columnsXL:1,
+                columnsL:1,
+                columnsM:1,
+                singleContainerFullSize:false,
+                content:[
+                    new sap.ui.core.Title({text:"Datos generales"}),
+                    new sap.m.Label({text:"Nombre"}),
+                    new sap.m.Input(),
+                    new sap.m.Label({text:"Apellido"}),
+                    new sap.m.Input(),
+                    new sap.ui.core.Title({text:"Datos adicionales"}),
+                    new sap.m.Label({text:"Email"}),
+                    new sap.m.Input(),
+                    new sap.m.Label({text:"Direccion"}),
+                    new sap.m.Input()
+                ]
+            });
+
+
+            let oPgCrCus = new sap.m.Page("createPage",{
+                showNavButton:true,
+                content:[
+                    oTlbAction,
+                    oSfmCrCus
+                ],
+                navButtonPress:function(){
+                    oApp.to("listPage");
+                },
+                title:"Crear Cliente"
+            });
+            let oApp = new sap.m.App("app");
+            oApp.addPage(oPgCrCus);
+            oApp.placeAt("content");
+
+        });
+
+    </script>
+</head>
+<body>
+<div id="content"></div>
+</body>
+</html>

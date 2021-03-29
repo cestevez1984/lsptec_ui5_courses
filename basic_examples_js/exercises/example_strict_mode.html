@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<head>
+    <title>Ejemplo calculo comision</title>
+    <script>
+        let percentageCommission = 5.0;
+
+        function execute(){
+             let vQuantity = document.getElementById("inNumber1").value;
+             let vCommission = document.getElementById("inCommission").checked;
+             if(vCommission){
+                 percentagecommission = percentageCommission * 10;
+                 let vResult = percentageCommission * vQuantity;
+                 document.getElementById("pResult").innerHTML = vResult;
+             }else{
+                 percentageCommission = 5.0;
+                 let vResult = percentageCommission * vQuantity;
+                 document.getElementById("pResult").innerHTML = vResult;
+             }
+
+        }
+    </script>
+</head>
+<bod>
+<table>
+    <caption>Operaciones aritmeticas</caption>
+    <thead>
+    <th></th>
+    <th></th>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Numero 1</td>
+        <td><input id="inNumber1" type="number" placeholder="Digite Cantidad" required></td>
+    </tr>
+    <tr>
+        <td>Subir Comision</td>
+        <td><input id="inCommission" type="checkbox"></td>
+    </tr>
+    <tr>
+        <td><button type="button" onclick="execute()">Ejecutar</button></td>
+        <td><input type="reset" value="Limpiar"></td>
+    </tr>
+    <tr>
+        <td><p id="pResult"></p></td>
+    </tr>
+    </tbody>
+</table>
+</bod>
+</html>
